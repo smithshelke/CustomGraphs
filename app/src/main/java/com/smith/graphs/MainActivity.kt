@@ -13,15 +13,17 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         hideSystemBars()
         setupInsets()
-        graph.setOnTouchListener(object : Graph.OnTouchListener {
-            override fun onTouch(x: Int, y: Int) {
-                point.text = "X : $x"
-            }
+        progress_circular.start()
+//        graph.setOnTouchListener(object : Graph.OnTouchListener {
+//            override fun onTouch(x: Int, y: Int) {
+//                point.text = "X : $x"
+//            }
+//
+//        })
+//        add.setOnClickListener{
+//            graph.addPoint((100*Math.random()).toFloat())
+//        }
 
-        })
-        add.setOnClickListener{
-            graph.addPoint((100*Math.random()).toFloat())
-        }
     }
 
     private fun hideSystemBars() {
