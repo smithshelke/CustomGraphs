@@ -52,19 +52,19 @@ class MyCircle : View {
     }
 
     fun start() {
-//        val valueAnimator = ValueAnimator()
-//        valueAnimator.repeatCount = ValueAnimator.INFINITE
-//        valueAnimator.addUpdateListener {
-//            Log.d("salman", initialX.toString())
-//            if (initialX > width) {
-//                initialX = 50f
-//            } else {
-//                initialX += 50f
-//            }
-//            invalidate()
-//        }
-//        valueAnimator.duration = 20000
-//        valueAnimator.start()
+        val valueAnimator = ValueAnimator.ofInt(0, 100)
+        valueAnimator.repeatCount = ValueAnimator.INFINITE
+        valueAnimator.addUpdateListener {
+            Log.d("salman", initialX.toString())
+            if (initialX > width) {
+                initialX = 50f
+            } else {
+                initialX += 50f
+            }
+            invalidate()
+        }
+        valueAnimator.duration = 2
+        valueAnimator.start()
     }
 
     private fun init() {
