@@ -10,6 +10,7 @@ import android.view.MotionEvent
 import android.view.View
 import androidx.core.graphics.withScale
 import androidx.core.graphics.withTranslation
+import java.lang.Float.min
 import kotlin.math.abs
 
 class Graph : View {
@@ -131,6 +132,40 @@ class Graph : View {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         initCoordinates()
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val heightMode = MeasureSpec.getMode(heightMeasureSpec)
+        val widthMode = MeasureSpec.getMode(widthMeasureSpec)
+
+        val widthAvailable = MeasureSpec.getSize(widthMeasureSpec).toFloat()
+        val heightAvailable = MeasureSpec.getSize(heightMeasureSpec).toFloat()
+
+        val desiredHeight = 200.dp()
+        val desiredWidth = 200.dp()
+
+        var resultHeight = 0f
+        var resultWidth = 0f
+
+        when(widthMode){
+            MeasureSpec.AT_MOST ->{
+                resultWidth = min(desiredWidth,widthAvailable)
+            }
+            MeasureSpec.EXACTLY ->{
+                resultWidth = widthAvailable
+            }
+        }
+
+        when(heightMode){
+            MeasureSpec.AT_MOST ->{
+                resultHeight = min(desiredHeight,heightAvailable)
+            }
+            MeasureSpec.EXACTLY ->{
+                resultHeight = heightAvailable
+            }
+        }
+
+        setMeasuredDimension(resultWidth.toInt(),resultHeight.toInt())
     }
 
     override fun onDraw(canvas: Canvas?) {
